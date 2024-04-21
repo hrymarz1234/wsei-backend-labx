@@ -540,9 +540,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Genesis\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
@@ -566,8 +566,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj": {
-              "projectPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj"
+            "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj"
             }
           }
         }

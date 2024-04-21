@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BzhgB7eT3Y/kGvJTrSAbCN+XUsrhhlyhz5nZvtX9ZcJvdotgJ3tekMYEpkw7/lBHfCvY6NAOQD5opVOJ2mUkcw==",
+  "dgSpecHash": "o480OlQZSluSpHEUI1ejMLdei1JpD3Ytf9k4amoXg1xIa+RDj/lMupV2zC+5C/ujVV9xv+bXWyHiwB0BIz2J6A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj",
+  "projectFilePath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

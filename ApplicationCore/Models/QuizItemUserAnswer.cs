@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Interfaces.Repository;
+using ApplicationCore.Models.QuizAggregate;
 
 namespace BackendLab01;
 

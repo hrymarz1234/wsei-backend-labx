@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\UnitTest\\UnitTest.csproj": {}
+    "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\UnitTest\\UnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj": {
+    "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj",
+        "projectUniqueName": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj",
         "projectName": "ApplicationCore",
-        "projectPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj",
+        "projectPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj",
         "packagesPath": "C:\\Users\\Genesis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\obj\\",
+        "outputPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -64,14 +64,14 @@
         }
       }
     },
-    "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Genesis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -93,8 +93,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj": {
-                "projectPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj"
+              "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj"
               }
             }
           }
@@ -134,14 +134,14 @@
         }
       }
     },
-    "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\UnitTest\\UnitTest.csproj": {
+    "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\UnitTest\\UnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\UnitTest\\UnitTest.csproj",
+        "projectUniqueName": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\UnitTest\\UnitTest.csproj",
         "projectName": "UnitTest",
-        "projectPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\UnitTest\\UnitTest.csproj",
+        "projectPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\UnitTest\\UnitTest.csproj",
         "packagesPath": "C:\\Users\\Genesis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\UnitTest\\obj\\",
+        "outputPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\UnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -163,11 +163,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj": {
-                "projectPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj"
+              "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\ApplicationCore\\ApplicationCore.csproj"
               },
-              "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Genesis\\Source\\Repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Genesis\\source\\repos\\wsei-backend-labx2\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }

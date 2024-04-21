@@ -1,4 +1,5 @@
-﻿using BackendLab01;
+﻿using ApplicationCore.Models.QuizAggregate;
+using BackendLab01;
 
 namespace ApplicationCore.Interfaces.Criteria;
 

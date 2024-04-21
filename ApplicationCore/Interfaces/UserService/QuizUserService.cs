@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.Interfaces.Criteria;
 using ApplicationCore.Interfaces.Repository;
+using ApplicationCore.Models.QuizAggregate;
 
 namespace BackendLab01;
 
@@ -41,5 +42,25 @@ public class QuizUserService: IQuizUserService
         //     .Where(x => x. UserId == userId)
         //     .ToList();
         return answerRepository.FindBySpecification(new QuizItemsForQuizIdFilledByUser(quizId, userId)).ToList();
+    }
+
+    Quiz IQuizUserService.CreateAndGetQuizRandom(int count)
+    {
+        throw new NotImplementedException();
+    }
+
+    Quiz? IQuizUserService.FindQuizById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IQueryable<Quiz> FindAll()
+    {
+        return quizRepository.FindAll().AsQueryable();
+    }
+
+    IQueryable<QuizItemUserAnswer> IQuizUserService.GetUserAnswersForQuiz(int quizId, int userId)
+    {
+        throw new NotImplementedException();
     }
 }

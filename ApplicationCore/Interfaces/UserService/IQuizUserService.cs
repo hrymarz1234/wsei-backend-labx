@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Interfaces.Repository;
+using ApplicationCore.Models.QuizAggregate;
 
 namespace BackendLab01;
 
@@ -8,9 +9,11 @@ public interface IQuizUserService
 
     Quiz? FindQuizById(int id);
 
+    IQueryable<Quiz> FindAll();
+
     void SaveUserAnswerForQuiz(int quizId, int userId, int quizItemId, string answer);
 
-    List<QuizItemUserAnswer> GetUserAnswersForQuiz(int quizId, int userId);
+    IQueryable<QuizItemUserAnswer> GetUserAnswersForQuiz(int quizId, int userId);
 
     int CountCorrectAnswersForQuizFilledByUser(int quizId, int userId)
     {

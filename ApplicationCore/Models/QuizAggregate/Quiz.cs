@@ -1,8 +1,7 @@
 ﻿using ApplicationCore.Interfaces.Repository;
-using ApplicationCore.Models.QuizAggregate;
 
-namespace BackendLab01;
 
+namespace ApplicationCore.Models.QuizAggregate;
 public class Quiz : IIdentity<int>
 {
     public int Id { get; set; }
