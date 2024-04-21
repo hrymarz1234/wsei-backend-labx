@@ -35,14 +35,7 @@ public class QuizUserService: IQuizUserService
     }
 
 
-    public List<QuizItemUserAnswer> GetUserAnswersForQuiz(int quizId, int userId)
-    {
-        // return answerRepository.FindAll()
-        //     .Where(x => x.QuizId == quizId)
-        //     .Where(x => x. UserId == userId)
-        //     .ToList();
-        return answerRepository.FindBySpecification(new QuizItemsForQuizIdFilledByUser(quizId, userId)).ToList();
-    }
+    
 
     Quiz IQuizUserService.CreateAndGetQuizRandom(int count)
     {
@@ -51,7 +44,8 @@ public class QuizUserService: IQuizUserService
 
     Quiz? IQuizUserService.FindQuizById(int id)
     {
-        throw new NotImplementedException();
+        return quizRepository.FindById(id);
+
     }
 
     public IQueryable<Quiz> FindAll()
@@ -59,8 +53,8 @@ public class QuizUserService: IQuizUserService
         return quizRepository.FindAll().AsQueryable();
     }
 
-    IQueryable<QuizItemUserAnswer> IQuizUserService.GetUserAnswersForQuiz(int quizId, int userId)
+    public IQueryable<QuizItemUserAnswer> GetUserAnswersForQuiz(int quizId, int userId)
     {
-        throw new NotImplementedException();
+        return answerRepository.FindBySpecification(new QuizItemsForQuizIdFilledByUser(quizId, userId)).AsQueryable();
     }
 }

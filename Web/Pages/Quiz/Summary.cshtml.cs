@@ -11,10 +11,8 @@ public class Summary : PageModel
     {
         _userService = userService;
     }
-
     public void OnGet(int quizId, int userId)
     {
         CorrectAnswerCount = _userService.CountCorrectAnswersForQuizFilledByUser(quizId, userId);
     }
-
 }
