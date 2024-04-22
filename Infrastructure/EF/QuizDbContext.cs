@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.Models.QuizAggregate;
 using Infrastructure.EF.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Infrastructure.EF
 {
-    public class QuizDbContext : DbContext
+    public class QuizDbContext : IdentityDbContext<UserEntity, UserRole, int>
     {
         public DbSet<QuizEntity> Quizzes { get; set; }
         public DbSet<QuizItemEntity> QuizItems { get; set; }
