@@ -4,6 +4,9 @@ using ApplicationCore.Interfaces.Repository;
 using ApplicationCore.Models.QuizAggregate;
 using BackendLab01;
 using Infrastructure.Memory.Repositories;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using WebAPI.Validators;
 
 namespace WebAPI
 {
@@ -25,6 +28,9 @@ namespace WebAPI
             builder.Services.AddSingleton<IGenericRepository<QuizItemUserAnswer, string>, MemoryGenericRepository<QuizItemUserAnswer, string>>();
             builder.Services.AddSingleton<IQuizUserService, QuizUserService>();
             builder.Services.AddSingleton<IQuizAdminService, QuizAdminService>();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddScoped<IValidator<QuizItem>, QuizItemValidator>();
 
             var app = builder.Build();
 

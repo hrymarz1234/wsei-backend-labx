@@ -1,8 +1,10 @@
 ﻿using ApplicationCore.Interfaces.AdminService;
 using ApplicationCore.Models.QuizAggregate;
+using AutoMapper;
 using BackendLab01;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using WebApIa.DTO;
 
 namespace WebApIa.Controllers
@@ -12,21 +14,19 @@ namespace WebApIa.Controllers
     public class AdminController : Controller
     {
         private readonly IQuizAdminService _adminservice;
+        private readonly IMapper _mapper;
 
-        public AdminController(IQuizAdminService adminservice)
+        public AdminController(IQuizAdminService adminservice, IMapper mapper)
         {
             _adminservice = adminservice;
+            _mapper = mapper;   
         }
         [HttpPost]
         public ActionResult<object> AddQuiz(LinkGenerator link, NewQuizDto dto)
         {
-            var quiz = _adminservice.AddQuiz(new Quiz() { Title = dto.Title });
+            var quiz = _adminservice.AddQuiz(_mapper.Map<Quiz>(dto));
             return Created(
-                link.GetPathByAction(
-                    HttpContext,
-                    nameof(GetQuiz),         // nazwa metody kontrolera zwracająca quiz
-                    null,                    // kontroler, null oznacza bieżący
-                    new { quiId = quiz.Id }),// parametry ścieżki, id utworzonego quiz
+                link.GetPathByAction(HttpContext, nameof(GetQuiz), null, new { quiId = quiz.Id }),
                 quiz
             );
         }
@@ -51,6 +51,7 @@ namespace WebApIa.Controllers
                     error = $"Quiz width id {quizId} not found"
                 });
             }
+            
             int previousCount = quiz.Items.Count;
             patchDoc.ApplyTo(quiz, ModelState);
             if (!ModelState.IsValid)
