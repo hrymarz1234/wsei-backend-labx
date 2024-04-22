@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Interfaces.Criteria;
+﻿using ApplicationCore.Interfaces.AdminService;
+using ApplicationCore.Interfaces.Criteria;
 using ApplicationCore.Interfaces.Repository;
 using ApplicationCore.Models.QuizAggregate;
 
@@ -35,26 +36,22 @@ public class QuizUserService: IQuizUserService
     }
 
 
-    
-
-    Quiz IQuizUserService.CreateAndGetQuizRandom(int count)
+    public IQueryable<QuizItemUserAnswer> GetUserAnswersForQuiz(int quizId, int userId)
     {
-        throw new NotImplementedException();
-    }
-
-    Quiz? IQuizUserService.FindQuizById(int id)
-    {
-        return quizRepository.FindById(id);
-
+        return answerRepository.FindBySpecification(new QuizItemsForQuizIdFilledByUser(quizId, userId)).AsQueryable();
     }
 
     public IQueryable<Quiz> FindAll()
     {
-        return quizRepository.FindAll().AsQueryable();
+        throw new NotImplementedException();
+    }
+    IEnumerable<Quiz> FindAllQuizzes()
+    {
+        return quizRepository.FindAll();
     }
 
-    public IQueryable<QuizItemUserAnswer> GetUserAnswersForQuiz(int quizId, int userId)
+    IEnumerable<Quiz> IQuizUserService.FindAllQuizzes()
     {
-        return answerRepository.FindBySpecification(new QuizItemsForQuizIdFilledByUser(quizId, userId)).AsQueryable();
+        return quizRepository.FindAll();
     }
 }

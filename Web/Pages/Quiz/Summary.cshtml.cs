@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using BackendLab01;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BackendLab01.Pages;
+namespace Web.Pages;
 
 public class Summary : PageModel
 {
@@ -11,6 +12,7 @@ public class Summary : PageModel
     {
         _userService = userService;
     }
+
     public void OnGet(int quizId, int userId)
     {
         CorrectAnswerCount = _userService.CountCorrectAnswersForQuizFilledByUser(quizId, userId);

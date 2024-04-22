@@ -1,9 +1,9 @@
 ﻿using ApplicationCore.Interfaces.Criteria;
 using ApplicationCore.Interfaces.Repository;
 
-namespace Infrastructure.Memory.Repository;
+namespace Infrastructure.Memory.Repositories;
 
-public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: class, IIdentity<K> where K : IComparable<K>
+public class MemoryGenericRepository<T, K> : IGenericRepository<T, K> where T : class, IIdentity<K> where K : IComparable<K>
 {
     private readonly IGenericGenerator<K>? _idGenerator;
 
@@ -11,7 +11,6 @@ public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: cla
     {
         _idGenerator = idGenerator;
     }
-
 
     private Dictionary<K, T> _data = new();
 
@@ -25,26 +24,19 @@ public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: cla
         return Task.FromResult(_data.ContainsKey(id) ? _data[id] : null);
     }
 
-    public Task<List<T>> FindAllAsync()
+    public Task<IQueryable<T>> FindAllAsync()
     {
-        return Task.FromResult(_data.Values.ToList());
+        return Task.FromResult(_data.Values.AsQueryable());
     }
 
     public T? FindById(K id)
     {
-        try
-        {
-            return _data[id];
-        }
-        catch(KeyNotFoundException e)
-        {
-            return null;
-        }
+        return _data.GetValueOrDefault(id);
     }
 
-    public List<T> FindAll()
+    public IQueryable<T> FindAll()
     {
-        return _data.Values.ToList();
+        return _data.Values.AsQueryable();
     }
 
     public T Add(T entity)
@@ -53,7 +45,7 @@ public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: cla
         {
             entity.Id = _idGenerator.Next;
         }
-        _data[entity.Id]= entity;
+        _data[entity.Id] = entity;
         return entity;
     }
 
@@ -73,5 +65,15 @@ public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: cla
     public IEnumerable<T> FindBySpecification(ISpecification<T> specification = null)
     {
         return MemorySpecificationEvaluator<T>.GetQuery(_data.Values.AsQueryable(), specification);
+    }
+
+    Task<List<T>> IGenericRepository<T, K>.FindAllAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    List<T> IGenericRepository<T, K>.FindAll()
+    {
+        throw new NotImplementedException();
     }
 }

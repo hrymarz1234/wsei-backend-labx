@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Interfaces.Repository;
+﻿using ApplicationCore.Interfaces.AdminService;
+using ApplicationCore.Interfaces.Repository;
 using ApplicationCore.Models.QuizAggregate;
 
 namespace BackendLab01;
@@ -20,4 +21,6 @@ public interface IQuizUserService
         return GetUserAnswersForQuiz(quizId, userId)
             .Count(e => e.IsCorrect());
     }
+    IEnumerable<Quiz> FindAllQuizzes();
+    
 }

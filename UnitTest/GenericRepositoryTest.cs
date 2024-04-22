@@ -2,96 +2,102 @@
 using BackendLab01;
 using ApplicationCore.Interfaces.Repository;
 using Infrastructure.Memory;
-using Infrastructure.Memory.Repository;
 using ApplicationCore.Models.QuizAggregate;
+using ApplicationCore.Interfaces.AdminService;
+using Infrastructure.Memory.Repositories;
 
 namespace UnitTest;
 
-public class GenericRepositoryTest
+public class MemoryQuizServiceTest
 {
-    private readonly IGenericRepository<QuizItem, int> quizItemRepository;
-    private readonly QuizItem item1;
-    private readonly QuizItem item2;
-    private readonly QuizItem item3;
+    private IGenericRepository<Quiz, int> quizRepository = new MemoryGenericRepository<Quiz, int>(new IntGenerator());
 
-    public GenericRepositoryTest()
+    private IGenericRepository<QuizItem, int> itemRepository =
+        new MemoryGenericRepository<QuizItem, int>(new IntGenerator());
+
+    private IGenericRepository<QuizItemUserAnswer, string> answerRepository =
+        new MemoryGenericRepository<QuizItemUserAnswer, string>(null);
+
+    private IQuizAdminService _aservice;
+    private IQuizUserService _uservice;
+    private User _user = new User() { Id = 1, Username = "Testowy" };
+    private Quiz _quiz;
+
+    public MemoryQuizServiceTest()
     {
-        quizItemRepository = new MemoryGenericRepository<QuizItem, int>(new IntGenerator());
-        item1 = quizItemRepository.Add(new QuizItem()
-        {
-            Question = "Litera?",
-            IncorrectAnswers = new List<string>() { "B", "C", "D" },
-            CorrectAnswer = "A",
-            Id = 0
-        }
+        _aservice = new QuizAdminService(quizRepository, itemRepository);
+        _uservice = new QuizUserService(quizRepository, answerRepository, itemRepository);
+
+        _quiz = _aservice.AddQuiz(
+            new Quiz()
+            {
+                Title = "Litery alfabetu",
+            }
         );
-        item2 = quizItemRepository.Add(new QuizItem()
-        {
-            Question = "Planeta?",
-            IncorrectAnswers = new List<string>() { "Mars", "Wenus", "Pluton" },
-            CorrectAnswer = "Jowisz",
-            Id = 0
-        });
-        item3 = quizItemRepository.Add(new QuizItem()
-        {
-            Question = "Miasto?",
-            IncorrectAnswers = new List<string>() { "Kielce", "Kraków", "Katowice" },
-            CorrectAnswer = "Kołobrzeg",
-            Id = 0
-        });
+        var item1 = _aservice.AddQuizItemToQuiz(_quiz.Id,
+            new QuizItem()
+            {
+                CorrectAnswer = "A",
+                IncorrectAnswers = new List<string>() { "B", "C", "D" },
+                Question = "Pierwsza litera alfabetu?"
+            });
+
+        var item2 = _aservice.AddQuizItemToQuiz(_quiz.Id,
+            new QuizItem()
+            {
+                CorrectAnswer = "B",
+                IncorrectAnswers = new List<string>() { "A", "C", "E" },
+                Question = "Druga litera alfabetu?"
+            });
+
+        var item3 = _aservice.AddQuizItemToQuiz(_quiz.Id,
+            new QuizItem()
+            {
+                CorrectAnswer = "C",
+                IncorrectAnswers = new List<string>() { "A", "B", "F" },
+                Question = "Trzecia litera alfabetu?"
+            });
     }
 
     [Fact]
-    public void CreateTest()
+    public void CreateItemsTest()
     {
-        Assert.Equal(item1.Id, quizItemRepository.FindById(item1.Id).Id);
-        Assert.Equal(item2.Id, quizItemRepository.FindById(item2.Id).Id);
-        Assert.Equal(item3.Id, quizItemRepository.FindById(item3.Id).Id);
+        int previousCount = _aservice.FindAllQuizItems().Count();
+        _aservice.AddQuizItemToQuiz(
+            1,
+            new QuizItem()
+            {
+                CorrectAnswer = "A",
+                IncorrectAnswers = new List<string>() { "B", "C", "D" },
+                Question = "Pierwsza litera alfabetu?"
+            });
+        var items = _aservice.FindAllQuizItems();
+        Assert.Equal(previousCount + 1, items.Count());
     }
 
     [Fact]
-    public void DeleteTest()
+    public void CreateQuizTest()
     {
-        var newItem = quizItemRepository.Add(new QuizItem()
-        {
-            Id = 1,
-            CorrectAnswer = "x",
-            IncorrectAnswers = new List<string>() { "1", "2", "3" },
-            Question = "?"
-        }
-        );
-        Assert.Contains(quizItemRepository.FindAll(), item => item.Id == newItem.Id);
-        Assert.Equal(4, quizItemRepository.FindAll().Count());
-        quizItemRepository.RemoveById(newItem.Id);
-        Assert.Equal(3, quizItemRepository.FindAll().Count());
-        Assert.Contains(quizItemRepository.FindAll(), item => item.Id == item2.Id);
-        Assert.Contains(quizItemRepository.FindAll(), item => item.Id == item3.Id);
-        Assert.DoesNotContain(quizItemRepository.FindAll(), item => item.Id == newItem.Id);
+        var findQuiz = _uservice.FindQuizById(_quiz.Id);
+        Assert.Equal(_quiz.Id, findQuiz.Id);
     }
 
     [Fact]
-    public void UpdateTest()
+    public void AddUserAnswerTest()
     {
-        var updatedQuiz = new QuizItem()
-        {
-            Id = item1.Id,
-            CorrectAnswer = item1.CorrectAnswer,
-            IncorrectAnswers = item1.IncorrectAnswers,
-            Question = "question"
-        };
-        quizItemRepository.Update(item1.Id, updatedQuiz);
-        var item = quizItemRepository.FindById(item1.Id);
-        Assert.Equal(updatedQuiz.Question, item.Question);
-    }
-
-    [Fact]
-    public void FindBySpecification()
-    {
-        IEnumerable<QuizItem> items = quizItemRepository.FindBySpecification(new QuizItemByQuestion("Miasto?"));
-        Assert.Contains(items, item => item.Question == "Miasto?");
-        Assert.Single(items);
+        var quiz = _uservice.FindQuizById(_quiz.Id);
+        _uservice.SaveUserAnswerForQuiz(quizId: quiz.Id, userId: _user.Id, quizItemId: quiz.Items[0].Id, "x");
+        _uservice.SaveUserAnswerForQuiz(quizId: quiz.Id, userId: _user.Id, quizItemId: quiz.Items[1].Id,
+            quiz.Items[1].CorrectAnswer);
+        _uservice.SaveUserAnswerForQuiz(quizId: quiz.Id, userId: _user.Id, quizItemId: quiz.Items[2].Id,
+            quiz.Items[2].CorrectAnswer);
+        IQueryable<QuizItemUserAnswer> userAnswers = _uservice.GetUserAnswersForQuiz(quiz.Id, userId: _user.Id);
+        Assert.Equal(3, userAnswers.Count());
+        int count = _uservice.CountCorrectAnswersForQuizFilledByUser(quiz.Id, _user.Id);
+        Assert.Equal(2, count);
     }
 }
+
 
 
 
