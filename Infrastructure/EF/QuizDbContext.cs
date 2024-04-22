@@ -28,6 +28,10 @@ namespace Infrastructure.EF
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<UserEntity>().HasData(
+        new UserEntity { Id = 1, Password = "admin", Email = "admin@example.com" }
+    );
+
             modelBuilder.Entity<QuizItemUserAnswerEntity>()
                 .HasOne(e => e.QuizItem);
 
@@ -44,6 +48,15 @@ namespace Infrastructure.EF
                     new QuizItemAnswerEntity() { Id = 9, Answer = "9" },
                     new QuizItemAnswerEntity() { Id = 10, Answer = "0" }
                 );
+            modelBuilder.Entity<QuizItemUserAnswerEntity>()
+           .HasOne<QuizEntity>()
+           .WithMany()
+           .HasForeignKey(a => a.QuizId);
+
+            modelBuilder.Entity<QuizItemUserAnswerEntity>()
+                .HasOne<UserEntity>()
+                .WithMany()
+                .HasForeignKey(a => a.UserId);
 
             modelBuilder.Entity<QuizItemEntity>()
                 .HasData(

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EF.Entities
 {
-    internal class QuizEntity
+    public class QuizEntity
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public ISet<QuizItemEntity> Items { get; set; } = new HashSet<QuizItemEntity>();
     }
 }

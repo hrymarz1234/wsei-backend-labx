@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EF.Entities
 {
-    internal class UserEntity
+    public class UserEntity
     {
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

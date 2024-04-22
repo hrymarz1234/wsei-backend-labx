@@ -1,5 +1,7 @@
 ﻿using ApplicationCore.Models.QuizAggregate;
 using AutoMapper;
+using BackendLab01;
+using WebAPI.Dto;
 using WebApIa.DTO;
 
 namespace WebAPI.Mappers
@@ -19,6 +21,8 @@ namespace WebAPI.Mappers
                     op => op.MapFrom<List<QuizItem>>(i => i.Items)
                 );
             CreateMap<NewQuizDto, Quiz>();
+
+            CreateMap<QuizItemUserAnswer, FeedbackDto>();
         }
     }
 }

@@ -13,3 +13,5 @@ C:\Users\Genesis\source\repos\wsei-backend-labx2\Infrastructure\obj\Debug\net7.0
 C:\Users\Genesis\source\repos\wsei-backend-labx2\Infrastructure\obj\Debug\net7.0\refint\Infrastructure.dll
 C:\Users\Genesis\source\repos\wsei-backend-labx2\Infrastructure\obj\Debug\net7.0\Infrastructure.pdb
 C:\Users\Genesis\source\repos\wsei-backend-labx2\Infrastructure\obj\Debug\net7.0\ref\Infrastructure.dll
+C:\Users\Genesis\source\repos\wsei-backend-labx2\Infrastructure\bin\Debug\net7.0\Infrastructure.runtimeconfig.json
+C:\Users\Genesis\source\repos\wsei-backend-labx2\Infrastructure\obj\Debug\net7.0\Infrastructure.genruntimeconfig.cache
