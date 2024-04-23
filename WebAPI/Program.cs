@@ -30,10 +30,15 @@ namespace WebAPI
             builder.Services.AddSwaggerGen();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddFluentValidationAutoValidation();
-            builder.Services.AddScoped<IValidator<QuizItem>, QuizItemValidator>();
+            builder.Services.AddSingleton<IGenericRepository<Quiz, int>, MemoryGenericRepository<Quiz, int>>();
+            builder.Services.AddSingleton<IGenericRepository<QuizItem, int>, MemoryGenericRepository<QuizItem, int>>();
+            builder.Services.AddSingleton<IGenericRepository<QuizItemUserAnswer, string>, MemoryGenericRepository<QuizItemUserAnswer, string>>();
+            builder.Services.AddSingleton<IQuizUserService, QuizUserService>();
+            builder.Services.AddSingleton<IQuizAdminService, QuizAdminService>();
+            /*builder.Services.AddScoped<IValidator<QuizItem>, QuizItemValidator>();
             builder.Services.AddTransient<IGenericGenerator<int>, IntGenerator>();
             builder.Services.AddDbContext<QuizDbContext>();
-            builder.Services.AddTransient<IQuizUserService, QuizUserServiceEF>();
+            builder.Services.AddTransient<IQuizUserService, QuizUserServiceEF>();*/
 
             builder.Services.AddSingleton<JwtSettings>();
             builder.Services.ConfigureIdentity();
@@ -78,11 +83,7 @@ namespace WebAPI
                 });
             });
 
-            /*builder.Services.AddSingleton<IGenericRepository<Quiz, int>, MemoryGenericRepository<Quiz, int>>();
-builder.Services.AddSingleton<IGenericRepository<QuizItem, int>, MemoryGenericRepository<QuizItem, int>>();
-builder.Services.AddSingleton<IGenericRepository<QuizItemUserAnswer, string>, MemoryGenericRepository<QuizItemUserAnswer, string>>();
-builder.Services.AddSingleton<IQuizUserService, QuizUserService>();
-builder.Services.AddSingleton<IQuizAdminService, QuizAdminService>();*/
+            
 
 
 
